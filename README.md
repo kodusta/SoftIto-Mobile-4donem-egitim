@@ -1,51 +1,21 @@
-# SoftIto-Mobile-4donem-egitim
+## 📱 Mobil Geliştirme Hedeflerim
 
-İlk Repo Başlatıldı
+Mobil uygulama geliştirme alanındaki bilgilerimi daha ileri seviyeye taşıyarak, kullanıcı deneyimini ve güçlü yazılım mimarisini bir arada sunan modern mobil uygulamalar geliştirmeyi hedefliyorum.
 
-Ilk katkı verenler
+Daha önce **React Native** ve **Flutter** ile geliştirme deneyimi kazandım. Önümüzdeki süreçte özellikle **Flutter ve native mobil geliştirme** konularında kendimi geliştirerek; sürdürülebilir, ölçeklenebilir ve performanslı uygulamalar geliştirmeye odaklanıyorum.
 
+### 🎯 Hedeflerim
 
-@halise-uytun
-halise uytun
-Awaiting halise-uytun’s response
-Pending Invite
+* Flutter ile ileri seviye mobil uygulamalar geliştirmek
+* Android tarafında **Kotlin** bilgimi güçlendirmek
+* Modern mobil mimarileri ve tasarım prensiplerini öğrenmek
+* **Clean Architecture, MVVM ve SOLID** prensiplerini mobil projelerde etkin kullanmak
+* REST API ve backend servisleriyle güçlü entegrasyonlar geliştirmek
+* Authentication, state management, local storage ve push notification gibi konularda uzmanlaşmak
+* Uygulama performansı, güvenlik ve ölçeklenebilirlik konularında kendimi geliştirmek
+* CI/CD süreçlerini mobil uygulama geliştirme süreçlerine dahil etmek
+* Gerçek kullanıcı ihtiyaçlarına yönelik, yayınlanabilir ve sürdürülebilir projeler geliştirmek
 
-@Hasbiyenur
-Hasbiyenur
-Collaborator
+### 🚀 Uzun Vadeli Hedefim
 
-@mehuze
-mrymturkosdak
-Awaiting mehuze’s response
-Pending Invite
-
-@mervekedersiz
-mervekedersiz
-Collaborator
-
-@Mrvgucc
-Mrvgucc
-Collaborator
-
-@zelaldrtn
-zelaldrtn
-Awaiting zelaldrtn’s response
-
-
-<<<<<<< HEAD
-11 Eylül Cuma güncellemesi son
-
-Bu soruyu alaaddin sordu
-=======
-11 Eylül Cuma güncellemesi son 1
->>>>>>> 1748e8cb33ccdac7af58888129e0842557e4c64e
-
-
-1
-2
-3
-4
-5
-6
-7
-8
+Mobil geliştirme ve backend bilgimi birleştirerek, **uçtan uca uygulama geliştirebilen güçlü bir software developer** olmak ve profesyonel olarak modern mobil teknolojiler üzerinde uzmanlaşmak.
