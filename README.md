@@ -39,3 +39,6 @@ Bu soruyu alaaddin sordu
 =======
 11 Eylül Cuma güncellemesi son 1
 >>>>>>> 1748e8cb33ccdac7af58888129e0842557e4c64e
+1
+2
+3
