@@ -32,4 +32,4 @@ zelaldrtn
 Awaiting zelaldrtn’s response
 
 
-11 Eylül Cuma güncellemesi
+11 Eylül Cuma güncellemesi son
