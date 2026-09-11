@@ -42,7 +42,7 @@ Bu soruyu alaaddin sordu
 
 
 1
-2
+2jjj
 3
 4
 5
