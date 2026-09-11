@@ -33,3 +33,5 @@ Awaiting zelaldrtn’s response
 
 
 11 Eylül Cuma güncellemesi son
+
+Bu soruyu alaaddin sordu
