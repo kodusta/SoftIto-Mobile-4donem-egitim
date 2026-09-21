@@ -1,0 +1,34 @@
+1.Hastalar
+
+CREATE TABLE patients(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tc_no TEXT UNIQUE NOT NULL,
+    full_name TEXT NOT NULL,
+    phone TEXT NOT NULL
+);
+
+
+
+2.Bölümler
+CREATE TABLE departments(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
+);
+
+3.Doktarlar
+CREATE TABLE doctors(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    department_id INTEGER NOT NULL,
+    full_name TEXT NOT NULL,
+    FOREIGN KEY (department_id) REFERENCES departments(id)
+);
+
+4.Randevular
+CREATE TABLE appointments(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    patient_id INTEGER NOT NULL,
+    doctor_id INTEGER NOT NULL,
+    appointment_date DATETIME NOT NULL,
+    FOREIGN KEY (patient_id) REFERENCES patients(id),
+    FOREIGN KEY (doctor_id) REFERENCES doctors(id)
+);

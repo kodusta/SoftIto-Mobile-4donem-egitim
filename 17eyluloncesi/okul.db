@@ -1,0 +1,47 @@
+PRAGMA foreign_keys=ON;
+
+
+CREATE TABLE IF NOT EXISTS students(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    student_number TEXT UNIQUE NOT NULL,
+    full_name TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE IF NOT EXISTS courses (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    course_code TEXT UNIQUE NOT NULL,--- Örn:MOB001
+    title TEXT NOT NULL,
+    credit INTEGER NOT NULL CHECK(credit>0)
+);
+
+
+CREATE TABLE IF NOT EXISTS enrollments(
+    student_id INTEGER NOT NULL,//student_id
+    course_id INTEGER NOT NULL,//course_id
+    enrollment_code DATETIME DEFAULT CURRENT_TIMESTAMP,
+    final_grade INTEGER CHECK(final_grade BETWEEN 0 AND 100),
+    PRIMARY KEY(student_id,course_id),//BİRİNCİL ANAHTAR Aynı derse iki kez kaydolamaz
+    FOREIGN KEY(student_id) REFERENCES students(id) ON DELETE CASCADE,
+    FOREIGN KEY(course_id) REFERENCES courses(id) ON DELETE RESTRICT
+);
+
+
+
+INSERT INTO students(student_number,full_name) VALUES ('ORG001','Abdullah Belli'),
+('ORG002',Alaaddin Odabaşı');
+INSERT INTO courses(course_code,title,credit) VALUES ('MOB101','Flutter dersi',4);
+
+INSERT INTO enrollments (student_id,course_id,final_grade) VALUES(1,1,85);
+
+
+---Test 1 Kursu Silmeye çalışalım
+DELETE FROM courses WHERE id=1;
+----ÇIKTI: Error:FOREIGN KEY constraint failed!(kurs silinemez çünkü kayıtlı öğrenci var)
+
+----TEST 2 Öğrenciyi silelim
+DELETE FROM students WHERE id=1;
+---Öğrenci silindi
+SELECT * FROM enrollments;
+----Çıktı: Boş (öğrenci silinince otomatin olarak kayıt satırıda silindi)
