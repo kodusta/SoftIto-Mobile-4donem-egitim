@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Güvenli Form ve regex doğrulama</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            max-width: 450px;
+            margin: auto;
+            background: #fafafa;
+        }
+
+        .field {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        input:user-invalid {
+            border-color: #ef4444;
+            background: #fef2f2;
+        }
+
+        input:user-valid {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+
+        .err {
+            display: none;
+            color: #ef4444;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        input:user-invalid+.err {
+            display: block;
+        }
+
+        .hp-trap {
+            display: none;
+        }
+
+        button {
+            width: 100%;
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Kurumsal Üye Kayıt Formu</h3>
+    <form action="/kayit" method="POST">
+        <input type="text" name="bot_check" class="hp-trap" tabindex="-1" autocomplete="off">
+        <div class="field">
+            <label for="tc">Tc Kimlik NO(11 hane):</label>
+            <input type="text" id="tc" required inputmode="numeric" maxlength="11"
+                pattern="^[1-9]{1}[0-9]{9}[02468]{1}$"
+                title="11 haneli olmalı,0 ile başlayamaz ve çift rakamla bitmelidir">
+            <span class="err">Geçerli bir tc kimlik numarası giriniz</span>
+        </div>
+        <div class="field">
+            <label for="tel">Cep Telefonu</label>
+            <input type="tel" id="tel" name="phone" required pattern="^(\+90|0)?5[0-9]{2}[0-9]{3}[0-9]{2}[0-9]{2}$"
+                placeholder="05370633162">
+            <span class="err">Geçerli bir cep telefon numarası giriniz.</span>
+        </div>
+        <div class="field">
+            <label for="password">Güçlü Şifre</label>
+            <input type="password" id="password" name="password" required minlength="8"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+            <span class="err">Şifre en az 8 karakter,büyük küçük harf,rakam ve özel karakter içermelidir.</span>
+        </div>
+        <button type="submit">Kayıt Ol</button>
+    </form>
+
+</body>
+
+</html>

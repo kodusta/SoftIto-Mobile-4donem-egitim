@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sıfır Js ile İnteraktif HTML5</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: lawngreen;
+            padding: 20px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        details {
+            margin-bottom: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 10px;
+        }
+
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #1e40af;
+        }
+
+        details[open] {
+            background: #eff6ff;
+        }
+
+        details p {
+            font-size: 13px;
+            color: #334155;
+            margin-top: 8px;
+            margin-bottom: 0;
+        }
+
+        dialog {
+            border: none;
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 360px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        dialog::backdrop {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blue(3px);
+        }
+
+        .btn-modal {
+            background: #334155;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <h3>Sıkça Sorulan Sorular</h3>
+        <details open>
+            <summary>Kargo teslimat süresi ne kadardır?</summary>
+            <p>Siparişlerimiz Aynı Gün kargoya verilir</p>
+        </details>
+        <details>
+            <summary>İade ve değişim şartları nelerdir?</summary>
+            <p>Ürünü teslim aldığınız andan itibaren 14 gün içinde iade edebilirsiniz</p>
+        </details>
+        <details>
+            <summary>Taksit seçenekleri varmı?</summary>
+            <p>Tüm kredi kartlarına vade farksız 3 taksit seçeneğimiz bulunmaktadır.</p>
+        </details>
+    </div>
+
+
+    <div class="box">
+        <h3>Kampanya Bildirimi</h3>
+        <p style="font-size: 13px;color: #64748b;">Aşağıdaki butona basarak modalı açabilirsiniz</p>
+        <button class="btn-modal" onclick="document.getElementById('indirimModal').showModal()">Kuponu Göster</button>
+    </div>
+
+    <dialog id="indirimModal">
+        <h3 style="margin-top: 0;">%20 indirim kuponu</h3>
+        <p style="font-size: 13px;color: #475569;">SoftITO öğrencilerine özel sepet indirimi kodunuz:</p>
+        <div
+            style="background: #f1f5f9;padding: 10px;text-align: center;font-weight: bold;border-radius: 6px;color:black">
+            SOFTITO2026
+        </div>
+        <div style="margin-top: 16px;text-align: right;">
+            <div>
+                <button onclick="document.getElementById('indirimModal').close()" style="padding: 6px 12px;border-radius: 4px;cursor: pointer;">
+                    Kapat
+                </button>
+            </div>
+        </div>
+    </dialog>
+
+
+
+
+</body>
+
+</html>

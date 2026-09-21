@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Tuvali</title>
+</head>
+<body style="font-family: sans-serif;padding: 20px;">
+    <h3>HTML5 Tuvaline İlk Fırçamızı Atalım</h3>
+    <canvas id="myTuval" width="320" height="140" style="border: 2px dashed #94a3b8;border-radius: 8px;"></canvas>
+
+
+<script>
+    //Tual ve fırçamızı alalım
+    const tuval=document.getElementById('myTuval');
+    const firca=tuval.getContext('2d');
+
+    //1.Dikdörtgen bir boya mavi
+    firca.fillStyle='#2563eb';
+    firca.fillRect(30,25,260,90);
+
+    //2.Üzerine beyaz yazı yazalım
+    firca.fillStyle='#ffffff';
+    firca.font='bold 20px sans-serif';
+    firca.fillText('Merhaba Html5 Canvas!',45,75)
+</script>
+
+
+</body>
+</html>
