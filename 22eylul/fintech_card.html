@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaGlass Cyber FinTech Card</title>
+  <style>
+    /* 1. Kutsal Reset & Kök Değişkenler */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #07090e;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --primary: #6366f1;
+      --cyan: #06b6d4;
+      --emerald: #10b981;
+      --text: #f8fafc;
+      --text-dim: #94a3b8;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at 80% 20%, #1e1b4b 0%, #07090e 65%);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text);
+      padding: 20px;
+    }
+
+    /* 2. Glassmorphism Ana Kart (Flexbox Column) */
+    .glass-card {
+      width: 100%;
+      max-width: 380px;
+      background: var(--card-bg);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8),
+                  inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Arka Plandaki Parlayan Neon Halka (Position Absolute Hilesi) */
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.4), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(99, 102, 241, 0.35);
+      box-shadow: 0 35px 70px -15px rgba(99, 102, 241, 0.25),
+                  inset 0 1px 2px rgba(255, 255, 255, 0.25);
+    }
+
+    /* 3. Üst Bar: Avatar & Profil (Flexbox Space-Between) */
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Avatar ve Canlı Nabız Rozeti */
+    .avatar-wrapper {
+      position: relative;
+      width: 46px;
+      height: 46px;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--cyan));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .status-dot {
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 12px;
+      height: 12px;
+      background: var(--emerald);
+      border-radius: 50%;
+      border: 2px solid #07090e;
+      box-shadow: 0 0 8px var(--emerald);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.25); opacity: 0.7; }
+    }
+
+    .badge-pro {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      padding: 6px 12px;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+      border-radius: 20px;
+    }
+
+    /* 4. Bakiye Alanı & Gradyan Yazı */
+    .balance-box {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .balance-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+
+    .balance-amount {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg, #ffffff 30%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .growth-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--emerald);
+    }
+
+    /* 5. 3'lü İstatistik Kutusu (Flexbox Row + Gap) */
+    .stats-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 18px;
+      padding: 12px 14px;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      flex: 1;
+    }
+
+    .stat-title {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .stat-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* 6. Aksiyon Butonları */
+    .actions-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 13px 0;
+      border-radius: 14px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #4f46e5);
+      color: white;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.55);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.09);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NovaGlass Cyber FinTech Card -->
+  <div class="glass-card">
+    <!-- Üst Bilgi Çubuğu -->
+    <div class="card-top">
+      <div class="user-info">
+        <div class="avatar-wrapper">
+          <div class="avatar-img">SÇ</div>
+          <span class="status-dot"></span>
+        </div>
+        <div>
+          <h4 style="font-size: 14px; font-weight: 700;">Selahaddin Ç.</h4>
+          <p style="font-size: 12px; color: var(--text-dim);">@kodvance</p>
+        </div>
+      </div>
+      <span class="badge-pro">PRO ARCHITECT</span>
+    </div>
+
+    <!-- Bakiye Bölümü -->
+    <div class="balance-box">
+      <span class="balance-label">Toplam Varlık Değeri</span>
+      <div class="balance-amount">₺ 284,500.00</div>
+      <div class="growth-tag">
+        <span>↗ +%24.8</span>
+        <span style="color: var(--text-dim); font-weight: 400;">bu ay</span>
+      </div>
+    </div>
+
+    <!-- 3'lü Flexbox İstatistik Barı -->
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="stat-title">İşlem</span>
+        <span class="stat-value">128</span>
+      </div>
+      <div class="stat-item" style="border-left: 1px solid rgba(255,255,255,0.06); border-right: 1px solid rgba(255,255,255,0.06);">
+        <span class="stat-title">Başarı</span>
+        <span class="stat-value" style="color: var(--emerald);">%99.4</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-title">Seviye</span>
+        <span class="stat-value" style="color: var(--cyan);">Tier 1</span>
+      </div>
+    </div>
+
+    <!-- Hızlı Aksiyon Butonları -->
+    <div class="actions-row">
+      <button class="btn btn-primary">⚡ Varlık Aktar</button>
+      <button class="btn btn-secondary">📊 Detaylar</button>
+    </div>
+  </div>
+
+</body>
+</html>

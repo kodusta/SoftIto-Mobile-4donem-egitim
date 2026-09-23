@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Model & Taşma Koruması</title>
+    <style>
+        /*ALTIN KURAL : Tüm projenin 1. satırında bu olmalıdır!*/
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            padding: 20px;
+            background-color: #f8fafc;
+        }
+
+        .box-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* content-box Sorunu gözlemek */
+        .broken-box {
+            box-sizing: content-box;
+            width: 100%;
+            padding: 24px;
+            border: 6px solid #ef4444;
+            background-color: #fee2e2;
+            margin-bottom: 30px;
+        }
+
+        /* border-box kurtarıcısı */
+        .fixed-box {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 24px;
+            border: 6px solid #10b981;
+            background-color: #d1fae5;
+            border-radius: 12px;
+        }
+
+        /* metin taşmasını engelleme (mobil)*/
+        .truncate-text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 250px;
+            background: white;
+            padding: 8px;
+            border-radius: 6px;
+            margin-top: 12px;
+            border: 1px solid #cbd5e1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box-container">
+        <h3>content-box (taşma yapan eleman)</h3>
+        <div class="broken-box">Ekrandan dışarı taşan kutu!</div>
+
+        <h3>border-box(kusursuz kutumuz)</h3>
+        <div class="fixed-box">
+            Tam ekran sınırında kalan mobil dostu kutumuz
+            <div class="truncate-text" title="Bu çok uzun bir Iban veya sipariş numarası veya extra bir metin olabilir">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis iure modi placeat, in, aperiam
+                eveniet atque officia quis non temporibus ipsa vel! Assumenda aut ad velit illum atque totam asperiores?
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
