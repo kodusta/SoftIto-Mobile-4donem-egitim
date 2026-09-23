@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bizim Sınıf Dashboard</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #090a0f;
+            --surface: #12131a;
+            --surface-hover: #181922;
+            --border: #22232e;
+            --border-focus: #3b3d4f;
+            --text: #ededef;
+            --text-muted: #8b8d98;
+            --accent: #e06c53;
+            --success: #10b981;
+            --badge-bg: rgba(224, 108, 83, 0.1);
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--bg);
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: var(--text);
+            padding: 32px 20px;
+        }
+
+        .header-area {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            background: var(--badge-bg);
+            border: 1px solid rgba(224, 108, 83, 0.3);
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            margin-bottom: 12px;
+        }
+
+        .pulse-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulseAnim 2s infinite;
+        }
+
+        @keyframes pulseAnim {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.35;
+                transform: scale(1.4);
+            }
+        }
+        h1{
+            font-size: clamp(1.8rem,4vw,2.8rem);
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            color: var(--text);
+        }
+
+        .dashboard-grid{
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 640px){
+            .dashboard-grid{
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+        @media (min-width:1024px){
+            .dashboard-grid{
+                grid-template-columns: repeat(3,1fr);
+            }
+        }
+        .glass-card{
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 180px;
+            transition: transform 0.25s cubic-bezier(0.4,0,0.2,1),border-color 0.25s ease,background-color 0.25s ease;
+        }
+        .glass-card:hover{
+            transform: translateY(-5px);
+            background: var(--surface-hover);
+            border-color: var(--border-focus);
+            box-shadow: 0 16px 32px 8px rgba(0, 0, 0, 0.6);
+        }
+        .card-top{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-icon{
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+        }
+        .card-val{
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin: 14px 0 14px;
+            color: var(--text);
+        }
+        .card-footer{
+            font-size: 13px;
+            color: var(--success);
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-area">
+        <div class="header-badge">
+            <span class="pulse-dot"></span>
+            <span>Canlı Borsa Devrede</span>
+
+        </div>
+        <h1>Fintech Platformu</h1>
+        <p style="color:var(--text-muted);margin-top: 8px;">Css Grid + Mobile First Query + Gpu 60 fps Animasyonlar</p>
+    </div>
+    <div class="dashboard-grid">
+        <div class="glass-card">
+            <div class="card-top">
+                <span style="font-size: 12px;color: var(--text-muted);text-transform: uppercase;letter-spacing: 0.5px;">
+                    Toplam Hakediş
+                </span>
+                <div class="card-icon">💼</div>
+            </div>
+            <div class="card-val">400.000 ₺</div>
+            <div class="card-footer">Betül Zaglı</div>
+        </div>
+        <div class="glass-card">
+            <div class="card-top">
+                <span style="font-size: 12px;color: var(--text-muted);text-transform: uppercase;letter-spacing: 0.5px;">
+                    Selahaddin Ciro
+                </span>
+                <div class="card-icon">⚡</div>
+            </div>
+            <div class="card-val">700.000 ₺</div>
+            <div class="card-footer">EPDK / Şarj Altyapı</div>
+        </div>
+        <div class="glass-card">
+            <div class="card-top">
+                <span style="font-size: 12px;color: var(--text-muted);text-transform: uppercase;letter-spacing: 0.5px;">
+                    Aktif Öğrenci
+                </span>
+                <div class="card-icon">🎓</div>
+            </div>
+            <div class="card-val">29 Geliştirici</div>
+            <div class="card-footer">11. Gün MasterClass</div>
+        </div>
+    </div>
+</body>
+
+</html>
