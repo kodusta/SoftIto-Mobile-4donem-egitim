@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoftIto - Minimalist Tasarım</title>
+    <style>
+
+        *,*::before,*::after{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        :root{
+            --bg-page:#f7f6f2;
+            --bg-card:#ffffff;
+            --border-subtle:#e6e4df;
+            --border-strong:#1e1d1b;
+            --text-main:#181716;
+            --text-muted:#6e6c66;
+            --clay:#b85430;
+            --sand:#ece9e2;
+            --max-width:1140px;
+        }
+        body{
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            padding: 32px 20px 80px;
+            line-height: 1.5;
+        }
+        .konso-header{
+            max-width: var(--max-width);
+            margin: 0 auto 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 24px;
+        }
+        .konso-header__topbar{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .konso-header__logo{
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .konso-header__edition{
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+        .konso-header__hero{
+            margin-top: 16px;
+        }
+        .konso-header__title{
+            font-size: clamp(2rem,5vm,3.4rem);
+            font-weight: 800;
+            letter-spacing: -1.2px;
+            line-height: 1.15;
+            max-width: 780px;
+        }
+        .konso-header__subtitle{
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-top: 12px;
+            max-width: 580px;
+        }
+
+        .konso-grid{
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+        }
+
+        @media(min-width:680px){
+            .konso-grid{
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+        @media(min-width:1024px){
+            .konso-grid{
+                grid-template-columns: repeat(3,1fr);
+            }
+        }
+        .konso-card{
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.25s ease,border-color 0.25s ease;
+        }
+        .konso-card:hover{
+            transform: translateY(-5px);
+            border-color: #cfccc4;
+        }
+        .konso-card__media{
+            height: 240px;
+            background: var(--sand);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            position: relative;
+        }
+        .konso-card__badge{
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: var(--bg-card);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border-subtle);
+        }
+        .konso-card__body{
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex-grow: 1;
+        }
+        .konso-card__category{
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 700;
+            color: var(--clay);
+        }
+        .konso-card__title{
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            color: var(--text-main);
+        }
+        .konso-card__text{
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .konso-card__footer{
+            padding: 16px 20px;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .konso-card__price{
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+        .konso-card__btn{
+            background: transparent;
+            border: 1px solid var(--border-strong);
+            color: var(--text-main);
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .konso-card__btn:hover{
+            background: var(--border-strong);
+            color: #ffffff;
+        }
+
+
+
+
+
+
+
+    </style>
+</head>
+
+<body>
+    <!--Başlık ve Filtre-->
+    <header class="konso-header">
+        <div class="konso-header__topbar">
+            <span class="konso-header__logo">SoftIto Logo</span>
+            <span class="konso-header__edition">Koleksiyon No: 04 / 2026</span>
+        </div>
+        <div class="konso-header__hero">
+            <h1 class="konso-header__title">Göz Yormayan ,insan odaklı yaşam alanları</h1>
+            <p class="konso-header__subtitle">Yapay zekanın klişe neonlarından uzak;Doğal ahşap ve taş dokulu tasarımlar
+            </p>
+        </div>
+    </header>
+    <main class="konso-grid">
+        <article class="konso-card">
+            <div class="konso-card__media">
+                🍶
+                <span class="konso-card__badge">Stokta 3 Adet</span>
+            </div>
+            <div class="konso-card__body">
+                <span class="konso-card__category">Seramik Sanatı</span>
+                <h3 class="konso-card__title">Hasır Dokulu Sake Seti</h3>
+                <p class="konso-card__text">Bursa atölyelerinde fırınlanmış, mat dokulu sırgı geleneksel seramik
+                    tasarımlar</p>
+            </div>
+            <div class="konso-card__footer">
+                <span class="konso-card__price">1.880 ₺</span>
+                <button class="konso-card__btn">İncele</button>
+            </div>
+        </article>
+        <article class="konso-card">
+            <div class="konso-card__media">
+                💡
+                <span class="konso-card__badge" style="color:var(--clay)">Öne Çıkan</span>
+            </div>
+            <div class="konso-card__body">
+                <span class="konso-card__category">Aydınlatma</span>
+                <h3 class="konso-card__title">Kağıt masa lambası</h3>
+                <p class="konso-card__text">Işığı göz yormayan pirinç kağıdı abajür</p>
+            </div>
+            <div class="konso-card__footer">
+                <span class="konso-card__price">4.500 ₺</span>
+                <button class="konso-card__btn">İncele</button>
+            </div>
+        </article>
+        <article class="konso-card">
+            <div class="konso-card__media">
+                🪵
+                <span class="konso-card__badge">Yeni Sezon</span>
+            </div>
+            <div class="konso-card__body">
+                <span class="konso-card__category">Mobilya</span>
+                <h3 class="konso-card__title">Masif Dişbudak Sehpa</h3>
+                <p class="konso-card__text">Hiç çivi kullanmadan birbirine geçmeli geleneksel ahşap sehpa</p>
+            </div>
+            <div class="konso-card__footer">
+                <span class="konso-card__price">7.500 ₺</span>
+                <button class="konso-card__btn">İncele</button>
+            </div>
+        </article>
+
+    </main>
+</body>
+
+</html>

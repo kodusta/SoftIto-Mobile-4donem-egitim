@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem Css Mimarisi</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --canvas: #f6f5f2;
+            --surface: #ffffff;
+            --line: #e4e2dd;
+            --ink: #1a1918;
+            --ink-muted: #73716b;
+            --terracotta: #c85a32;
+            --terracotta-soft: #faede8;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+        }
+        body{
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--canvas);
+            font-family: 'Times New Roman', Times, serif;
+            padding: 24px;
+            color: var(--ink);
+        }
+
+        /* Bem Blokları */
+        .product-item{
+            width: 100%;
+            max-width: 380px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: 0 4px 20px -2px rgba(26, 25, 24, 0.05);
+            transition: transform 0.25s ease,box-shadow 0.25s ease;
+        }
+
+        .product-item:hover{
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px -4px rgba(26, 25, 24, 0.08);
+        }
+
+        .product-item__visual{
+            position: relative;
+            height: 220px;
+            background-color: #edebe6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+        }
+        .product-item__tag{
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: var(--surface);
+            color: var(--ink);
+            border: 1px solid var(--line);
+        }
+        .product-item__tag--highlight{
+            background: var(--terracotta-soft);
+            color: var(--terracotta);
+            border-color: rgba(200, 90, 50, 0.2);
+        }
+        .product-item__body{
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .product-item__title{
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            color: var(--ink);
+        }
+        .product-item__desc{
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--ink-muted);
+        }
+        .product-item__footer{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid var(--line);
+            margin-top: 6px;
+        }
+        .product-item__price{
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--ink);
+        }
+        /* Bem Blok Bitişi*/
+
+        /*bem bağımsız bölüm buton bloğu */
+        .action-btn{
+            padding: 10px 18px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .action-btn--primary{
+            background: var(--ink);
+            color: #ffffff;
+        }
+        .action-btn--primary:hover{
+            background: var(--terracotta)
+        }
+
+
+
+
+
+
+    </style>
+</head>
+
+<!--Bem standartlarına uygun kart yapısı-->
+<article class="product-item">
+    <div class="product-item__visual">
+        <span class="product-item__tag product-item__tag--highlight">El yapımı</span>
+    </div>
+    <div class="product-item__body">
+        <h3 class="product-item__title">Masif Koltuk</h3>
+        <p class="product-item__desc">Meşe Ağacından günde 18 saat bilgisayarda duranlar için özel üretilmiş</p>
+
+        <div class="product-item__footer">
+            <span class="product-item__price">4.000 ₺</span>
+            <button class="action-btn action-btn--primary">Sepete Ekle</button>
+        </div>
+    </div>
+</article>
+
+</body>
+
+</html>
