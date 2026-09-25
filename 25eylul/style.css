@@ -1,0 +1,60 @@
+<style>
+    :root {
+      --bg: #f8f7f4;
+      --card: #ffffff;
+      --border: #e6e5df;
+      --text: #181716;
+      --muted: #6b6963;
+      --clay: #c85a32;
+      --clay-hover: #b04e29;
+      --font-main: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-main); padding: 36px 16px; line-height: 1.5; }
+    .kokpit { max-width: 960px; margin: 0 auto; }
+
+    /* Header & KPI */
+    .header { margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .header__tag { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--clay); font-weight: 700; }
+    .header__title { font-size: 26px; font-weight: 700; margin-top: 2px; }
+
+    .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+    .kpi-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; }
+    .kpi-card span { font-size: 12px; color: var(--muted); font-weight: 600; }
+    .kpi-card h3 { font-size: 22px; font-weight: 700; font-family: var(--font-mono); margin-top: 4px; }
+
+    /* Layout */
+    .layout { display: grid; grid-template-columns: 320px 1fr; gap: 24px; }
+    @media (max-width: 768px) { .layout, .kpi-grid { grid-template-columns: 1fr; } }
+
+    /* Form & Panel */
+    .panel { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+    .panel h4 { font-size: 15px; font-weight: 700; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    
+    .field { margin-bottom: 12px; }
+    .field label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+    .field input, .field select { width: 100%; padding: 8px 10px; font-size: 13px; font-family: inherit; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--clay); background: #fff; }
+    
+    .btn-submit { width: 100%; background: var(--clay); color: #fff; border: none; padding: 10px; font-size: 13px; font-weight: 600; border-radius: 6px; cursor: pointer; margin-top: 6px; }
+    .btn-submit:hover { background: var(--clay-hover); }
+
+    /* Liste & Filtre */
+    .filter-bar { display: flex; gap: 10px; margin-bottom: 14px; }
+    .order-list { display: flex; flex-direction: column; gap: 10px; }
+    
+    .order-item { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; }
+    .order-item h5 { font-size: 13px; font-weight: 600; }
+    .order-item p { font-size: 12px; color: var(--muted); }
+    
+    .meta-box { display: flex; align-items: center; gap: 10px; }
+    .badge { font-size: 11px; padding: 2px 7px; border-radius: 4px; font-weight: 600; background: #fef3c7; color: #92400e; font-family: var(--font-mono); }
+    .badge--mobilya { background: #e0e7ff; color: #3730a3; }
+    .badge--aydinlatma { background: #fef3c7; color: #b45309; }
+    .badge--seramik { background: #d1fae5; color: #065f46; }
+
+    .btn-del { background: transparent; border: 1px solid var(--border); color: var(--muted); font-size: 11px; padding: 4px 8px; border-radius: 4px; cursor: pointer; }
+    .btn-del:hover { background: #ef4444; color: #fff; border-color: #ef4444; }
+  </style>
