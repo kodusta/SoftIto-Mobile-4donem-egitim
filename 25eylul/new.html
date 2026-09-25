@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sipariş & Gelir Kokpit Dashboard</title>
+    <style>
+        :root {
+            --bg: #f8f7f4;
+            --card: #ffffff;
+            --border: #e6e5df;
+            --text: #181716;
+            --muted: #6b6963;
+            --clay: #c85a32;
+            --clay-hover: #b04e29;
+            --font-main: 'Plus Jakarta Sans', system-ui, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-main);
+            padding: 36px 16px;
+            line-height: 1.5;
+        }
+
+        .kokpit {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        /* Header & KPI */
+        .header {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header__tag {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--clay);
+            font-weight: 700;
+        }
+
+        .header__title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .kpi-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 18px;
+        }
+
+        .kpi-card span {
+            font-size: 12px;
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        .kpi-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            margin-top: 4px;
+        }
+
+        /* Layout */
+        .layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 768px) {
+
+            .layout,
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Form & Panel */
+        .panel {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .panel h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .field {
+            margin-bottom: 12px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 8px 10px;
+            font-size: 13px;
+            font-family: inherit;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+        }
+
+        .field input:focus,
+        .field select:focus {
+            outline: none;
+            border-color: var(--clay);
+            background: #fff;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--clay);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 6px;
+        }
+
+        .btn-submit:hover {
+            background: var(--clay-hover);
+        }
+
+        /* Liste & Filtre */
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .order-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .order-item {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .order-item h5 {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .order-item p {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .meta-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge {
+            font-size: 11px;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-weight: 600;
+            background: #fef3c7;
+            color: #92400e;
+            font-family: var(--font-mono);
+        }
+
+        .badge--mobilya {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+
+        .badge--aydinlatma {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .badge--seramik {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .btn-del {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-del:hover {
+            background: #ef4444;
+            color: #fff;
+            border-color: #ef4444;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="kokpit">
+        <header class="header">
+            <span class="header__tag">Sipariş Takip</span>
+            <h1 class="header__title">Sipariş Yönetim Kokpiti</h1>
+        </header>
+
+        <section class="kpi-grid">
+            <div class="kpi-card">
+                <span>Kayıtlı sipariş</span>
+                <h3 id="kpiCount">0</h3>
+            </div>
+            <div class="kpi-card">
+                <span>Toplam Sipariş Tutar</span>
+                <h3 id="kpiTotal">0 ₺</h3>
+            </div>
+            <div class="kpi-card">
+                <span>Ortalama Ürün Fiyatı</span>
+                <h3 id="kpiAvg">0 ₺</h3>
+            </div>
+        </section>
+
+        <main class="layout">
+            <section class="panel">
+                <h4>Yeni sipariş kaydı</h4>
+                <form id="orderForm">
+                    <div class="field">
+                        <label for="prodName">Ürün Adı</label>
+                        <input type="text" id="prodName" placeholder="Sehpa" required>
+                    </div>
+                    <div class="field">
+                        <label for="prodCat">Kategori</label>
+                        <select name="prodCat" id="prodCat">
+                            <option value="Mobilya">Mobilya</option>
+                            <option value="Aydınlatma">Aydınlatma</option>
+                            <option value="Mutfak">Mutfak</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="prodPrice">Fiyat</label>
+                        <input type="number" id="prodPrice" value="3250" min="100" step="50" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Siparişi Kaydet</button>
+                </form>
+            </section>
+
+            <section class="panel">
+                <div class="filter-bar">
+                    <input type="text" id="searchInput" class="field" style="margin-bottom: 0;"
+                        placeholder="Ürün Adına Göre Filtrele">
+                    <select id="categoryFilter" style="width: 130px; font-size: 12px;padding: 6px;">
+                        <option value="ALL">Tüm Kategoriler</option>
+                        <option value="Mobilya">Mobilya</option>
+                        <option value="Aydınlatma">Aydınlatma</option>
+                        <option value="Mutfak">Mutfak</option>
+                    </select>
+                </div>
+                <div id="orderContainer" class="order-list">
+                    <!--Dinamik olarak elemanlar buraya basılacak /  eklenecek-->
+                </div>
+            </section>
+
+
+
+
+        </main>
+
+
+
+
+    </div>
+
+    <script>
+        let orders = [
+            { id: 1, name: "Sehpa", category: "Mobilya", price: 6500 },
+            { id: 2, name: "Abajür", category: "Aydınlatma", price: 7500 },
+            { id: 3, name: "Koltuk", category: "Mobilya", price: 8500 },
+            { id: 4, name: "Bulaşık Makinası", category: "Mutfak", price: 10000 },
+            { id: 5, name: "Ocak", category: "Mutfak", price: 15000 }
+        ];
+
+        //dom elementleri toplayalım
+        const orderContainer = document.getElementById('orderContainer');
+        const orderForm = document.getElementById('orderForm');
+        const searchInput = document.getElementById('searchInput');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const kpiCount = document.getElementById('kpiCount');
+        const kpiTotal = document.getElementById('kpiTotal');
+        const kpiAvg = document.getElementById('kpiAvg');
+
+
+        const updateKPIs = (dataList) => {
+            kpiCount.textContent = dataList.length;
+
+            if (dataList.length === 0) {
+                kpiTotal.textContent = "0 ₺";
+                kpiAvg.textContent = "0 ₺";
+                return;
+            }
+
+            //Toplam Tutar v(.reduce)
+            const total = dataList.reduce((acc, curr) => acc + curr.price, 0);
+            kpiTotal.textContent = `${total.toLocaleString("tr-TR")} ₺`;
+
+            //Ortalama Fiyat (.reduce)
+            const avg = total / dataList.length;
+            kpiAvg.textContent = `${Math.round(avg).toLocaleString("tr-TR")} ₺`;
+
+        }
+
+        //Filtreleme bölümü (dinamik dom / Render Motoru)
+        const renderOrders = () => {
+            const term = searchInput.value.toLowerCase().trim();
+            const selectedCat = categoryFilter.value;
+
+
+
+            //filtreleme bölümü
+            const filtered=orders.filter(order=>{
+                const matchesName=order.name.toLowerCase().includes(term);
+                const mathesCategory=selectedCat==="ALL" || order.category===selectedCat;
+                return matchesName && mathesCategory;
+            });
+
+            orderContainer.innerHTML="";
+
+            if(filtered.length===0){
+                orderContainer.innerHTML=`
+                <div style="padding:24px; text-align:center; color:var(--muted);font-size:12px">
+                    Kriterlere Uygun Ürün Bulunamadı
+                    </div>
+                `;
+                updateKPIs([]);
+                return;
+            }
+
+            //dinamik element üretim
+
+            filtered.forEach(order=>{
+                const item=document.createElement("article");
+                item.className="order-item";
+                item.setAttribute("data-id",order.id);
+
+                const badgeClass=order.category==="Mobilya"?"badge--mobilya":order.category==="Aydınlatma" ?"badge--aydinlatma":"badge--seramik";
+
+                item.innerHTML=`
+                <div>
+                    <h5>${order.name}</h5>
+                    <p>Birim Fiyat: ${order.price.toLocaleString("tr-TR")} ₺</p>
+                </div>
+                <div class="meta-box">
+                    <span class="badge ${badgeClass}">${order.category}</span>
+                    <button class="btn-del" data-action="delete">Sil</button>
+                </div>                
+                
+                `;
+                 
+                orderContainer.appendChild(item);
+
+                updateKPIs(filtered);
+
+
+
+            })
+
+
+
+
+
+        }
+
+        searchInput.addEventListener("input",renderOrders);
+        categoryFilter.addEventListener("change",renderOrders);
+
+        renderOrders();
+    </script>
+
+
+
+</body>
+
+</html>
